@@ -11,21 +11,15 @@ public class Application {
     public static void main(String[] args) throws SQLException {
         startDatabase();
 
-        final EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("br.com.fredericci.pu");
-        final EntityManager entityManager = entityManagerFactory.createEntityManager();
+        AnimalDAO animalDAO = new JpaAnimalDAO();
+        Animal a = new Animal("crocodile", 20, Animal.genderType.MALE);
+        animalDAO.saveAnimal(a);
+        Animal b = new Animal("parrot", 80, Animal.genderType.FEMALE);
+        animalDAO.saveAnimal(b);
 
-        Customer customer = new Customer();
-        customer.setFirstName("Dennys");
-        customer.setLastName("Fredericci");
-
-        entityManager.getTransaction().begin();
-        entityManager.persist(customer);
-        entityManager.getTransaction().commit();
-
-        System.out.println("Open your browser and navigate to http://localhost:8082/");
-        System.out.println("JDBC URL: jdbc:h2:mem:my_database");
-        System.out.println("User Name: sa");
-        System.out.println("Password: ");
+        for (Animal animal : animalDAO.getAnimals()){
+            System.out.println(animal);
+        }
 
     }
 
