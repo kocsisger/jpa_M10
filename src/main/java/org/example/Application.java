@@ -11,16 +11,9 @@ public class Application {
     public static void main(String[] args) throws SQLException {
         startDatabase();
 
-        AnimalDAO animalDAO = new JpaAnimalDAO();
-        Animal a = new Animal("crocodile", 20, Animal.genderType.MALE);
-        animalDAO.saveAnimal(a);
-        Animal b = new Animal("parrot", 80, Animal.genderType.FEMALE);
-        animalDAO.saveAnimal(b);
-
-        for (Animal animal : animalDAO.getAnimals()){
-            System.out.println(animal);
-        }
-
+        AnimalDAO animalDAO = new FileAnimalDAO();
+        AnimalManager animalManager = new AnimalManager(animalDAO);
+        animalManager.manage();
     }
 
     private static void startDatabase() throws SQLException {
