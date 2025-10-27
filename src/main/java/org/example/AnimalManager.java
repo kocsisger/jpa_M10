@@ -16,5 +16,13 @@ public class AnimalManager {
         for (Animal animal : animalDAO.getAnimals()){
             System.out.println(animal);
         }
+
+        Animal c = new Animal("snake", 50, Animal.genderType.FEMALE);
+
+        Zoo zoo = new Zoo("Debrecen Zoo");
+        zoo.getAnimals().add(a);
+        zoo.getAnimals().add(b);
+        zoo.getAnimals().add(c);
+        animalDAO.saveZoo(zoo);
     }
 }

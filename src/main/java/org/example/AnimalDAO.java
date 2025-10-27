@@ -7,4 +7,6 @@ public interface AnimalDAO {
     public List<Animal> getAnimals();
     public void updateAnimal(Animal a);
     public void deleteAnimal(Animal a);
+
+    default public void saveZoo(Zoo zoo){}
 }
